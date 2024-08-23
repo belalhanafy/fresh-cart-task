@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext , useEffect } from 'react'
 import style from './AllOrders.module.css'
 import { cartContext } from '../../Context/CartContext'
 export default function AllOrders() {
