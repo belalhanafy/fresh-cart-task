@@ -20,11 +20,11 @@ export default function WishList() {
             wishList.count > 0 ? (
               <>
                 <div className="w-5/6 mt-10 container mx-auto">
-                  <div className="flex flex-col space-x-2">
-                    <div className="relative overflow-x-auto shadow-md sm:rounded-lg bg-white">
+                  <h2 className='text-3xl my-4 text-center text-main font-semibold'>wishList Items</h2>
+                  <div className="flex flex-col">
+                    <div className="hidden lg:block relative overflow-x-auto shadow-md sm:rounded-lg bg-white">
                       <table className="w-full text-sm text-left rtl:text-right text-gray-500">
                         <thead className="text-xs text-gray-700 uppercase bg-gray-100">
-                        
                           <tr>
                             <th scope="col" className="px-16 py-3">
                               <span className="sr-only">Image</span>
@@ -61,21 +61,23 @@ export default function WishList() {
                                 {item.title}
                               </td>
                               <td className="px-6 lg:text-base text-xs py-4 font-semibold text-gray-900">
-                                {item.price}
+                                {item.price} EGP
                               </td>
                               <td className="px-6 lg:text-base text-xs py-4">
                                 <button
                                   onClick={() => removeFromWishList(item.id)}
                                   className="font-medium text-red-600 hover:underline"
                                 >
+                                  <i className="fa-solid fa-trash-can mr-1"></i>
                                   Remove
                                 </button>
                               </td>
                               <td className="px-6 lg:text-base text-xs py-4">
                                 <button
                                   onClick={() => addToCart(item.id)}
-                                  className="bg-main text-sm lg:text-base p-3 whitespace-nowrap text-white rounded-md font-semibold"
+                                  className="btn bg-main text-sm lg:text-base p-3 whitespace-nowrap text-white rounded-md font-semibold"
                                 >
+                                  <i className="fa-solid fa-cart-shopping mr-1"></i>
                                   Add To Cart
                                 </button>
                               </td>
@@ -83,6 +85,48 @@ export default function WishList() {
                           ))}
                         </tbody>
                       </table>
+                    </div>
+                    <div className="lg:hidden flex flex-col text-center">
+                      {wishList.data.map((item) => (
+                          
+                          <div
+                              key={item.id}
+                              className="bg-white border-b hover:bg-gray-50"
+                          >
+                            {/* Product Details */}
+                            <div className="p-4 flex justify-center">
+                              <img
+                                src={item.imageCover}
+                                className="shadow-lg w-[400px] block h-[400px] object-contain"
+                                alt={item.title}
+                              />
+                            </div>
+                            <h2 className="text-base px-6 py-4 font-semibold text-gray-900">
+                              {item.title}
+                            </h2>
+                            <p className="px-6 text-base py-4 font-semibold text-gray-900">
+                              Price : {item.price} EGP
+                            </p>
+                            <div className="px-6 text-base py-4">
+                              <button
+                                onClick={() => removeFromWishList(item.id)}
+                                className="font-medium text-red-600 hover:underline"
+                              >
+                                <i className="fa-solid fa-trash-can mr-1"></i>
+                                Remove
+                              </button>
+                            </div>
+                            <div className="px-6 lg:text-base text-xs py-4">
+                              <button
+                                onClick={() => addToCart(item.id)}
+                                className="btn bg-main text-sm lg:text-base p-3 whitespace-nowrap text-white rounded-md font-semibold"
+                              >
+                                <i className="fa-solid fa-cart-shopping mr-1"></i>
+                                Add To Cart
+                              </button>
+                            </div>
+                          </div>
+                        ))}
                     </div>
                     <div className="mt-10">
                       <div className="flex justify-center">

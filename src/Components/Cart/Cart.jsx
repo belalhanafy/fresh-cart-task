@@ -46,10 +46,11 @@ export default function Cart() {
       {cart ? (
         cart.numOfCartItems > 0 ? (
           <>
-            <div className="flex flex-col lg:flex-row items-start lg:space-x-3 mt-10 container mx-auto">
+            <h2 className='text-3xl mb-4 text-center mt-5 w-full text-main font-semibold'>Cart Items</h2>
+            <div className="flex flex-col lg:flex-row items-start justify-center lg:space-x-3 mt-10 container mx-auto">
               {/* Cart Items Table */}
               <div className="flex flex-col space-x-2 lg:w-3/4 w-full">
-                <div className="relative overflow-x-auto shadow-md sm:rounded-lg bg-white">
+                <div className="hidden lg:block relative overflow-x-auto shadow-md sm:rounded-lg bg-white">
                   <table className="w-full text-sm text-left rtl:text-right text-gray-500">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-100">
                       <tr>
@@ -65,8 +66,8 @@ export default function Cart() {
                       </tr>
                     </thead>
                     <tbody>
-                      {cart.data.products.map((pro, index) => (
-                        <tr key={index} className="bg-white border-b hover:bg-gray-50">
+                      {cart.data.products.map((pro) => (
+                        <tr key={pro.product.id} className="bg-white border-b hover:bg-gray-50">
                           {/* Product Details */}
                           <td className="p-4">
                             <img
@@ -123,6 +124,7 @@ export default function Cart() {
                               onClick={() => deleteCartItem(pro.product.id)}
                               className="font-medium text-red-600 hover:underline"
                             >
+                              <i className="fa-solid fa-trash-can mr-1"></i>
                               Remove
                             </button>
                           </td>
@@ -131,7 +133,81 @@ export default function Cart() {
                     </tbody>
                   </table>
                 </div>
-
+                <div className="lg:hidden flex flex-col text-center">
+                      {cart.data.products.map((pro) => (
+                          
+                          <div
+                              key={pro.product.id}
+                              className="bg-white border-b hover:bg-gray-50"
+                          >
+                            {/* Product Details */}
+                            <div className="p-4 flex justify-center">
+                              <img
+                                src={pro.product.imageCover}
+                                className="shadow-lg w-[400px] block h-[400px] object-contain"
+                                alt={pro.product.title}
+                              />
+                            </div>
+                            <h2 className="text-base px-6 py-4 font-semibold text-gray-900">
+                              {pro.product.title}
+                            </h2>
+                            <div className="px-6 lg:text-base text-xs py-4">
+                              <div className="flex items-center justify-center">
+                                <button
+                                  onClick={() => updateProductQuantity(pro.product.id, pro.count - 1)}
+                                  className="inline-flex items-center justify-center p-1 me-3 text-sm font-medium h-6 w-6 text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200"
+                                  type="button"
+                                >
+                                  <span className="sr-only">Quantity button</span>
+                                  <svg
+                                    className="w-3 h-3"
+                                    aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 18 2"
+                                  >
+                                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M1 1h16" />
+                                  </svg>
+                                </button>
+                                <div>
+                                  <span className="text-sm lg:text-xl">{pro.count}</span>
+                                </div>
+                                <button
+                                  onClick={() => updateProductQuantity(pro.product.id, pro.count + 1)}
+                                  className="inline-flex items-center justify-center h-6 w-6 p-1 ms-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200"
+                                  type="button"
+                                >
+                                  <span className="sr-only">Quantity button</span>
+                                  <svg
+                                    className="w-3 h-3"
+                                    aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 18 18"
+                                  >
+                                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 1v16M1 9h16" />
+                                  </svg>
+                                </button>
+                              </div>
+                            </div>
+                            <p className="px-6 text-base py-4 font-semibold text-gray-900">
+                              Price : {pro.price} EGP
+                            </p>
+                            <p className="px-6 text-base py-4 font-semibold text-gray-900">
+                              Totla Price : {pro.price * pro.count} EGP
+                            </p>
+                            <div className="px-6 text-base py-4">
+                              <button
+                                onClick={() => deleteCartItem(pro.product.id)}
+                                className="font-medium text-red-600 hover:underline"
+                              >
+                                <i className="fa-solid fa-trash-can mr-1"></i>
+                                Remove
+                              </button>
+                            </div>
+                          </div>
+                        ))}
+                    </div>
                 <div className="mt-10">
                   <div className="flex justify-between flex-col gap-5 lg:flex-row">
                     <Link to={"/home"} className="bg-green-500 py-2 px-4 shadow-md rounded-lg text-center text-white">
