@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&display=swap');@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root
+{
+    --main-color:#0aad0a;
+    --light-color:#f0f3f2;
+    --shadow: rgba(145,158,171,.2) 0px 2px 4px -1px,rgba(145,158,171,.14) 0px 4px 5px 0px,rgba(145,158,171,.12) 0px 1px 10px 0px;
+    --font-family:"Exo", system-ui;
+    --rating-color:#ffc908;
+}
+*,::after,::before{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+a {
+    cursor: pointer;
+    color: #000;
+    text-decoration: none;
+    transition: .3s;
+}
+
+body{
+    font-family: var(--font-family) !important;
+}
+.rating-color
+{
+    color: var(--rating-color);
+}
+.cursor-pointer
+{
+    cursor: pointer;
+}
+nav a:not(.active):hover {
+    color: #9ca3af;
+}
+li .active {
+    background-color: #17ce91;
+    color: #fff;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+.product{
+    transition: .5s;
+}
+.product:hover {
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    border-radius: 20px;
+}
+.product .btn 
+{
+    transition: .5s;
+    transform: translateY(100%);
+    opacity: 0;
+}
+.product:hover .btn 
+{
+    opacity: 1;
+    transform: translateY(0%);
+
+}
+.font-sm
+{
+    font-size: 14px;
+}
+.text-main
+{
+    color: var(--main-color);
+}
+.text-main-light
+{
+    color: var(--light-color);
+}
+.bg-main
+{
+    background-color: var(--main-color) !important;
+}
+.bg-main-light 
+{
+    background-color: var(--light-color) !important;
+}
+.dropdown-enter-active {
+    max-height: 500px;
+}
+
+.dropdown-leave-active {
+    max-height: 0;
+}
+.product:hover img {
+    box-shadow: none;
+}
+.product img {
+    transition: .5S;
+}
+.detailsBtn:hover, .btn:hover {
+    box-shadow: inset 0 0 10px 4px #067706;
+    color: #000;
+}
+.detailsBtn, .btn{
+    transition: .5s;
+}
+.appear {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.hide {
+    transform: translateY(-100%);
+    opacity: 0;
+}
+
+.transition {
+    transition: transform 0.5s linear, opacity 0.5s linear;
+}
+.icons i{
+    transition: .3s;
+    cursor: pointer;
+}
+.icons i:hover{
+    color: #9ca3af;
+}
+::selection{
+    color: white;
+    background-color: var(--main-color) !important;
+}
