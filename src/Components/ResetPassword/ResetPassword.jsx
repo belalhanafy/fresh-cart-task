@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import style from './ResetPassword.module.css'
 import { useFormik } from 'formik'
 import { useNavigate, useParams } from 'react-router-dom';
@@ -11,7 +11,9 @@ export default function ResetPassword() {
   const [loading , setLoading] = useState(false)
   const [ newPassword, setNewPassword] = useState(null)
   let navigate = useNavigate()
-
+  useEffect(() => {
+    document.title = "reset Password"
+  }, [])
   async function resetPassword(values) {
     try {
       setNewPassword(values.password)

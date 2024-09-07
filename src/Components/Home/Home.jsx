@@ -18,6 +18,7 @@ export default function Home() {
   }
   useEffect(() => {
     getAllProducts()
+    document.title = "home"
   }, [])
   
   return (

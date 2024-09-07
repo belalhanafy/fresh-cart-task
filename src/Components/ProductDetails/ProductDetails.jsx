@@ -61,6 +61,7 @@ export default function ProductDetails() {
   }
   useEffect(() => {
     getProductDetails(productId);
+    document.title = "product details"
   }, [productId]);
 
   return (

@@ -22,6 +22,7 @@ export default function Cart() {
 
   useEffect(() => {
     getCartItems();
+    document.title = "cart"
   }, []);
   const [promoCode, setPromoCode] = useState("");
   const [promoCodeDiscount, setPromoCodeDiscount] = useState(0);

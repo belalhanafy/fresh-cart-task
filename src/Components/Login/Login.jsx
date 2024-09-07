@@ -23,6 +23,7 @@ export default function Login() {
     if (userData) {
       navigate('/home')
     }
+    document.title = "login"
   }, [userData]);
 
   async function login(values) {

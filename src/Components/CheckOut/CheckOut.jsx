@@ -1,9 +1,14 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import style from './CheckOut.module.css'
 import { useFormik } from 'formik'
 import { cartContext } from '../../Context/CartContext';
+import { Link } from 'react-router-dom';
 export default function CheckOut() {
-  let {checkOut} = useContext(cartContext)
+  useEffect(() => {
+    document.title = "check out"
+  }, [])
+  
+  let {checkOut,loading} = useContext(cartContext)
 
   let formik = useFormik({
     initialValues:{
@@ -17,7 +22,7 @@ export default function CheckOut() {
     <>
       <div className="w-1/2 mx-auto mt-8">
         <h2 className="text-3xl mb-5 font-semibold text-emerald-500">
-          login Now:
+          check out:
         </h2>
         <form onSubmit={formik.handleSubmit}>
 
@@ -76,7 +81,6 @@ export default function CheckOut() {
             </label>
           </div>
 
-          <div className="my-5"><Link className="text-emerald-600 hover:underline " to="/forgetPassword">Forgot Password?</Link></div>
 
           {!loading?<button
             type="submit"

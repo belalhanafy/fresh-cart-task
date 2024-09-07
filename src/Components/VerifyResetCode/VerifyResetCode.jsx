@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import style from './VerifyResetCode.module.css'
 import { NavLink, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
@@ -12,7 +12,9 @@ export default function VerifyResetCode() {
   const [errormessage , setErrorMessage] = useState('')
   const [sendAnotherCode , setSendAnotherCode] = useState(false)
   const navigate = useNavigate();
-
+  useEffect(() => {
+    document.title = "reset code"
+  }, [])
 
   const inputsRef = useRef([]);
 

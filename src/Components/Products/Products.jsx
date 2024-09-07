@@ -20,6 +20,7 @@ export default function Products() {
 
   useEffect(() => {
     getAllProducts();
+    document.title = "products"
   }, []);
 
   useEffect(() => {

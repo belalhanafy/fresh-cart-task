@@ -1,13 +1,16 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import style from "./WishList.module.css";
 import { cartContext } from "../../Context/CartContext";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import Loading from "../Loading/Loading";
 export default function WishList() {
   let navigate = useNavigate()
-  let { wishList, loading, addToCart, removeFromWishList } = useContext(cartContext);
-  console.log(wishList);
-
+  let { wishList, loading, addToCart, removeFromWishList,getWishListItems } = useContext(cartContext);
+  useEffect(() => {
+    getWishListItems()
+    document.title = "WishList"
+  }, [])
+  
   return (
     <>
       {loading ? (

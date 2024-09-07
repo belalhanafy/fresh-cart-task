@@ -23,6 +23,7 @@ export default function Categories() {
   }
   useEffect(() => {
     getAllCategories()
+    document.title = "categories"
   }, [])  
   return (
     <>

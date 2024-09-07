@@ -45,6 +45,7 @@ export default function Register() {
     if (userData) {
       navigate('/home')
     }
+    document.title = "register"
   }, [userData]);
   let validationSchema = Yup.object().shape({
     name: Yup.string()

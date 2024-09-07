@@ -34,6 +34,7 @@ export default function Brands() {
 
   useEffect(() => {
     getAllBrands();
+    document.title = "brands"
   }, []);
 
   return (

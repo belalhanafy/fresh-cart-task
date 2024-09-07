@@ -1,4 +1,4 @@
-  import React, { useState } from 'react'
+  import React, { useEffect, useState } from 'react'
   import style from './ForgetPassword.module.css'
   import { useFormik } from 'formik';
   import * as Yup from 'yup';
@@ -10,7 +10,10 @@
     const [loading , setLoading] = useState(false)
     const navigate = useNavigate();
 
-
+    useEffect(() => {
+      document.title = "forget Password"
+    }, [])
+    
     async function forgetPassword(values) {
       try {
         setLoading(true)
