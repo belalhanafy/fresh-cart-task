@@ -26,7 +26,7 @@ export default function Products() {
     const searchTermLower = searchTerm.trim().toLowerCase();
     const filtered = products.filter((product) => {
       return (
-        product.title.split(' ').slice(0,2).join(' ').toLowerCase().includes(searchTermLower) || 
+        product.title.toLowerCase().includes(searchTermLower) || 
         product.category.name.toLowerCase().includes(searchTermLower)
       );
     });
@@ -60,7 +60,7 @@ export default function Products() {
           <input
             type="search"
             id="search"
-            className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="outline-none block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-green-500 focus:border-green-500 dark:focus:ring-green-500 dark:focus:border-green-500"
             placeholder="Search"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}

@@ -2,6 +2,7 @@ import React from 'react'
 import style from './RelatedProductsSlider.module.css'
 import Slider from 'react-slick';
 import { Link } from 'react-router-dom';
+import RecentProduct from '../RecentProduct/RecentProduct';
 export default function RelatedProductsSlider({relPro}) {
   var settings = {
     dots: true,
@@ -41,12 +42,11 @@ export default function RelatedProductsSlider({relPro}) {
     <>
         <Slider className='mb-8' {...settings}>
           {relPro?.map((relPro,index)=> 
-          <Link key={index} to={`/productDetails/${relPro.id}/${relPro.category?._id}`}>
-            <div key={index}>
-              <img src={relPro.imageCover} className='w-full block object-contain lg:object-cover rounded-lg shadow-md' alt=''/> 
-              <p className='mt-2 mb-5 lgmb-3 text-center'>{relPro.title.split(' ').slice(0,2).join(' ')}</p>
+          <div key={index}>
+            <div className='mx-2 mb-6' key={index}>
+              <RecentProduct key={relPro.id} pro={relPro}/>
             </div> 
-          </Link>
+          </div>
           )}
         </Slider>
     </>

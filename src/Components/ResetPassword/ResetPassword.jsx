@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import style from './ResetPassword.module.css'
 import { useFormik } from 'formik'
 import { useNavigate, useParams } from 'react-router-dom';
-import toast from 'react-hot-toast';
 import * as Yup from 'yup';
 import axios from 'axios';
+import { Bounce, toast } from 'react-toastify';
 
 export default function ResetPassword() {
   let { email } = useParams();
@@ -21,10 +21,17 @@ export default function ResetPassword() {
         newPassword
       })
       console.log(data);
-      toast.success('password reseted successfully',{
-        duration: 1000,
-        reverseOrder:true
-      })
+      toast.success('password reseted successfully', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+        });
       navigate('/login')
     } catch (error) {
       console.log(error);

@@ -3,7 +3,7 @@ import style from './VerifyResetCode.module.css'
 import { NavLink, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Loading from '../Loading/Loading';
-import toast from 'react-hot-toast';
+import { Bounce,toast } from 'react-toastify';
 
 export default function VerifyResetCode() {
   let { email } = useParams();
@@ -38,18 +38,32 @@ export default function VerifyResetCode() {
       let {data} = await axios.post('https://ecommerce.routemisr.com/api/v1/auth/forgotPasswords',{
         email
       })
-      toast.success('reset code send successfully to your email',{
-        duration: 1000,
-        reverseOrder:true
-      })
+      toast.success('reset code send successfully to your email', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+        });
       setSendAnotherCode(false)
       setErrorMessage('')
       setCode(["", "", "", "", "", ""])
     } catch (error) {
-      toast.error('entered email is wrong or somthing went wrong please try again',{
-        duration: 1000,
-        reverseOrder:true
-      })
+      toast.error('entered email is wrong or somthing went wrong please try again', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+        });
       setSendAnotherCode(true)
     }finally{
       setLoading(false)

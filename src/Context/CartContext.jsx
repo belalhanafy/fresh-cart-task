@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { createContext, useContext, useEffect, useState } from 'react'
-import toast from 'react-hot-toast';
 import { userContext } from './UserContext';
+import { Bounce,toast } from 'react-toastify';
 
 export let cartContext = createContext();
 
@@ -14,6 +14,8 @@ export default function CartContextProvider({children}) {
     const [wishList, setWishList] = useState(null)
     const [wishListProducts, setWishListProducts] = useState([])
     const [loading, setLoading] = useState(false)
+    const [QuantityloadingPlus, setQuantityloadingPlus] = useState(false)
+    const [QuantityloadingMinus, setQuantityloadingMinus] = useState(false)
     let headers = {
         token : localStorage.getItem('userToken')
     }
@@ -25,10 +27,17 @@ export default function CartContextProvider({children}) {
                 headers
             })
             setCart(data);
-            toast.success(data.message,{
-                duration: 1000,
-                reverseOrder:true
-            })
+            toast.success(data.message, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+                });
         } catch (error) {
             console.log(error);
         }
@@ -70,7 +79,8 @@ export default function CartContextProvider({children}) {
         }
     }
 
-    async function updateProductQuantity(productId,count) {
+    async function updateProductQuantityM(productId,count) {
+        setQuantityloadingMinus(true)
         if (count>0) {
             try {
                 let {data} = await axios.put(`https://ecommerce.routemisr.com/api/v1/cart/${productId}`,{
@@ -81,8 +91,25 @@ export default function CartContextProvider({children}) {
                 setCart(data);
             } catch (error) {
                 console.log(error);
+            }finally{
+                setQuantityloadingMinus(false)
             }
         }  
+    }
+    async function updateProductQuantityP(productId,count) {
+        setQuantityloadingPlus(true)
+        try {
+            let {data} = await axios.put(`https://ecommerce.routemisr.com/api/v1/cart/${productId}`,{
+                count
+            },{
+                headers
+            })
+            setCart(data);
+        } catch (error) {
+            console.log(error);
+        }finally{
+            setQuantityloadingPlus(false)
+            }
     }
 
     async function checkOut(ShippingAddress) {
@@ -106,11 +133,17 @@ export default function CartContextProvider({children}) {
             },{
                 headers
             })
-            
-            toast.success(data.message,{
-                duration: 1000,
-                reverseOrder:true
-            })
+            toast.success(data.message, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+                });
             getWishListItems()
         } catch (error) {
             console.log(error);
@@ -122,10 +155,17 @@ export default function CartContextProvider({children}) {
             let {data} = await axios.delete(`https://ecommerce.routemisr.com/api/v1/wishlist/${productId}`,{
                 headers
             })
-            toast.success(data.message,{
-                duration: 1000,
-                reverseOrder:true
-            })
+            toast.success(data.message, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+                });
             getWishListItems()
         } catch (error) {
             console.log(error);
@@ -159,7 +199,7 @@ export default function CartContextProvider({children}) {
     
 
     return (<>
-        <cartContext.Provider value={{wishListProducts, setWishListProducts, wishList, setWishList, getWishListItems, removeFromWishList, addToWishList, clearCart, checkOut, updateProductQuantity, deleteCartItem, getCartItems, addToCart, cart, setCart, loading, setLoading}}>
+        <cartContext.Provider value={{QuantityloadingPlus, QuantityloadingMinus, wishListProducts, setWishListProducts, wishList, setWishList, getWishListItems, removeFromWishList, addToWishList, clearCart, checkOut, updateProductQuantityM,updateProductQuantityP, deleteCartItem, getCartItems, addToCart, cart, setCart, loading, setLoading}}>
                 {children}
             </cartContext.Provider>
         </>

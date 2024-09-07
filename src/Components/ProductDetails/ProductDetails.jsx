@@ -8,6 +8,8 @@ import GetRelatedProducts from "../GetRelatedProducts/GetRelatedProducts";
 import { cartContext } from "../../Context/CartContext";
 
 var settings = {
+  className: "center",
+  centerMode: true,
   dots: false,
   infinite: true,
   speed: 2000,
@@ -80,22 +82,26 @@ export default function ProductDetails() {
                 }}>
                 <i className={`absolute top-4 right-4 text-xl fa-solid fa-heart ${wishListProducts.includes(productId) && 'text-red-600'}`}></i>
                 </button>
-                <div className="lg:w-1/4 text-center w-full my-10 lg:mr-10">
-                {productdetails.images>1 ? <Slider {...settings}>
+                <div className="lg:w-[30%] text-center w-full my-10 lg:mr-10">
+                {productdetails.images.length > 1 ? <Slider {...settings}>
                     {productdetails.images?.map((image, index) => (
-                      <img
-                        key={index}
-                        src={image}
-                        className="w-full block"
-                        alt=""
-                      />
+                      <div>
+                        <div className="mx-2">
+                          <img
+                          key={index}
+                          src={image}
+                          className="w-full block object-cover"
+                          alt=""
+                          />
+                        </div>
+                      </div>
+                     
                     ))}
                   </Slider> : <img
                         src={productdetails.imageCover}
                         className="w-full block"
                         alt=""
                       />}
-
                 </div>
                 <div className="lg:w-3/4 lg:text-left text-center w-full">
                   <div>
@@ -105,8 +111,16 @@ export default function ProductDetails() {
                     <p className="my-4 text-gray-500">
                       {productdetails.description}
                     </p>
-                    <h3 className="text-main">
+                    <h3 className="my-4 text-main">
+                    <span className="text-black">Category: </span>
                       {productdetails.category?.name}
+                    </h3>
+                    <h3 className="my-4 text-main">
+                    <span className="text-black"> Brand: </span>
+                      {productdetails.brand?.name}
+                    </h3>
+                    <h3 className=" my-4 text-main">
+                      <span className="text-black">Subcategory: </span> {productdetails.subcategory[0]?.name}
                     </h3>
                     <div className="flex justify-between mt-1">
                       <p className="text-main">{productdetails.price} EGP</p>

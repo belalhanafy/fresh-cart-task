@@ -4,7 +4,8 @@
   import * as Yup from 'yup';
   import axios from "axios";
   import { Link, useNavigate } from 'react-router-dom';
-import toast from 'react-hot-toast';
+  import { Bounce, toast } from 'react-toastify';
+
   export default function ForgetPassword() {
     const [loading , setLoading] = useState(false)
     const navigate = useNavigate();
@@ -14,16 +15,30 @@ import toast from 'react-hot-toast';
       try {
         setLoading(true)
         let {data} = await axios.post('https://ecommerce.routemisr.com/api/v1/auth/forgotPasswords',values)
-        toast.success('reset code send successfully to your email',{
-          duration: 1000,
-          reverseOrder:true
-        })
+        toast.success('reset code send successfully to your email', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+          });
         navigate(`/verifyResetCode/${values.email}`)
       } catch (error) {
-        toast.error('entered email is wrong or somthing went wrong please try again',{
-          duration: 1000,
-          reverseOrder:true
-        })
+        toast.error('entered email is wrong or somthing went wrong please try again', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+          });
       }finally{
         setLoading(false)
       }

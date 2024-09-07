@@ -5,7 +5,8 @@ import { cartContext } from '../../Context/CartContext'
 export default function RecentProduct({pro}) {
   let {addToCart, addToWishList, wishListProducts, setWishListProducts, removeFromWishList} = useContext(cartContext)
   const [solid, setSolid] = useState(false)
-  function handleHeartClick() {
+  function handleHeartClick(e) {
+    console.log(e);
     if (wishListProducts.includes(pro.id)) {
       const updatedWishList = wishListProducts.filter(id => id !== pro.id);
       setWishListProducts(updatedWishList);
@@ -34,11 +35,12 @@ export default function RecentProduct({pro}) {
         <button onClick={() => {
                 handleHeartClick();
             }}>
-          <i className={`absolute top-4 right-4 text-xl fa-solid fa-heart ${wishListProducts.includes(pro.id) && 'text-red-600'}`}></i>
+          <i className={`absolute z-30 top-4 right-4 text-xl fa-solid fa-heart ${wishListProducts.includes(pro.id) && 'text-red-600'}`}></i>
         </button>
           <Link to={`/productDetails/${pro.id}/${pro.category._id}`}>
             <img className='shadow-md block w-full rounded-2xl' src={pro.imageCover} alt={pro.title} />
             <div className='px-3 py-2'>
+              
               <h2 className='text-main text-sm'>{pro.category.name}</h2>
               <p className='font-medium text-xl'>{pro.title.split(' ').slice(0,2).join(' ')}</p>
               <div className="flex justify-between mt-4">

@@ -3,7 +3,7 @@ import style from "./Register.module.css";
 import * as Yup from 'yup';
 import { useFormik } from "formik";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { userContext } from "../../Context/UserContext";
 
 export default function Register() {
@@ -13,6 +13,23 @@ export default function Register() {
   console.log(userData);
   
   let navigate = useNavigate()
+
+  function handleShowPassword() {
+    let passwordInput = document.getElementById("password");
+    if (passwordInput.type === "password") {
+      passwordInput.type = "text";
+    } else {
+      passwordInput.type = "password";
+        }
+  }
+  function handleShowrePassword() {
+    let passwordInput = document.getElementById("rePassword");
+    if (passwordInput.type === "password") {
+      passwordInput.type = "text";
+    } else {
+      passwordInput.type = "password";
+        }
+  }
   async function register(values) {
     try {
       setLoading(true)
@@ -133,18 +150,19 @@ export default function Register() {
               className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-emerald-500 focus:outline-none focus:ring-0 focus:border-emerald-600 peer"
               placeholder=" "
             />
+            <span><i onClick={handleShowPassword} className="fa-regular fa-eye absolute top-2/4 -translate-y-2/4 right-3 cursor-pointer"></i></span>
             <label
               htmlFor="password"
               className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-emerald-600 peer-focus:dark:text-emerald-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
               Enter Your password:
             </label>
-            {formik.touched.password && formik.errors.password ? (
-              <div className="p-2 my-4 text-lg rounded-lg bg-red-50 dark:text-red-400" role="alert">
-                <span className="text-red-600 font-medium">{formik.errors.password}</span>
-              </div>
-            ) : null}
           </div>
+          {formik.touched.password && formik.errors.password ? (
+            <div className="p-2 my-4 text-lg rounded-lg bg-red-50 dark:text-red-400" role="alert">
+              <span className="text-red-600 font-medium">{formik.errors.password}</span>
+            </div>
+          ) : null}
           <div className="relative z-0 w-full mb-5 group">
             <input
               type="password"
@@ -157,18 +175,20 @@ export default function Register() {
               placeholder=" "
               
             />
+            <span><i onClick={handleShowrePassword} className="fa-regular fa-eye absolute top-2/4 -translate-y-2/4 right-3 cursor-pointer"></i></span>
+
             <label
               htmlFor="rePassword"
               className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-emerald-600 peer-focus:dark:text-emerald-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
               Enter rePassword:
             </label>
-            {formik.touched.rePassword && formik.errors.rePassword ? (
-              <div className="p-2 my-4 text-lg rounded-lg bg-red-50 dark:text-red-400" role="alert">
-                <span className="text-red-600 font-medium">{formik.errors.rePassword}</span>
-              </div>
-            ) : null}
           </div>
+          {formik.touched.rePassword && formik.errors.rePassword ? (
+            <div className="p-2 my-4 text-lg rounded-lg bg-red-50 dark:text-red-400" role="alert">
+              <span className="text-red-600 font-medium">{formik.errors.rePassword}</span>
+            </div>
+          ) : null}
           <div className="relative z-0 w-full mb-5 group">
             <input
               type="tel"
@@ -193,6 +213,9 @@ export default function Register() {
               </div>
             ) : null}
           </div>
+
+          <div className="my-3">Already have an account? <Link className="text-emerald-600 hover:underline " to="/login">Sign In</Link></div>
+
           {!loading?<button
             type="submit"
             className="text-white bg-emerald-700 hover:bg-emerald-800 focus:ring-4 focus:outline-none focus:ring-emerald-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-emerald-600 dark:hover:bg-emerald-700 dark:focus:ring-emerald-800"

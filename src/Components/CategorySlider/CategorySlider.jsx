@@ -56,10 +56,13 @@ export default function CategorySlider() {
     <>
         <h3 className='text-2xl my-4 text-center text-main font-semibold'>Shop Popular Category</h3>
         <Slider className='mb-16' {...settings}>
-          {categories?.map((cat,index)=> <div key={index}>
-            <img src={cat.image} className='w-full block h-[250px] object-contain lg:object-cover rounded-lg shadow-md' alt=''/> 
-            <p className='mt-2 mb-5 lgmb-3 text-center'>{cat.name}</p>
-          </div> )}
+          {categories?.map((cat,index)=><div key={index}>
+            <div className='mx-2'>
+              <img src={cat.image} className='w-full block h-[250px] object-contain lg:object-cover rounded-lg shadow-md' alt=''/> 
+              <p className='mt-2 mb-5 lgmb-3 text-center'>{cat.name}</p>
+            </div>
+          </div> 
+         )}
         </Slider>
     </>
   )

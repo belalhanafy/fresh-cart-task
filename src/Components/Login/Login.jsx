@@ -11,7 +11,14 @@ export default function Login() {
   const [loading , setLoading] = useState(false)
   let {userData,setUserData} = useContext(userContext)
   let navigate = useNavigate()
-
+  function handleShowPassword() {
+    let passwordInput = document.getElementById("password");
+    if (passwordInput.type === "password") {
+      passwordInput.type = "text";
+    } else {
+      passwordInput.type = "password";
+        }
+  }
   useEffect(() => {
     if (userData) {
       navigate('/home')
@@ -36,11 +43,13 @@ export default function Login() {
       .email('Invalid email address format')
       .required('Email is required'),
   
-    password: Yup.string()
+      password: Yup.string()
       .min(8, 'Password is too short - should be at least 8 characters.')
-      .matches(/^(?=.*[A-Z])(?=.*\d)(?=.*[a-zA-Z\d]).{8,}$/, 
-        'Password must start with a capital letter, contain at least one digit, and be 8-20 characters long.')
-      .required('Password is required'),
+      .matches(
+        /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
+        'Password must be 8-20 characters long, start with a capital letter, contain at least one uppercase letter, one lowercase letter, one digit, and one special character (#?!@$%^&*-).'
+      )
+      .required('Password is required')
   });
   
   let formik = useFormik({
@@ -95,20 +104,23 @@ export default function Login() {
               className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-emerald-500 focus:outline-none focus:ring-0 focus:border-emerald-600 peer"
               placeholder=" "
             />
+            <span><i onClick={handleShowPassword} className="fa-regular fa-eye absolute top-2/4 -translate-y-2/4 right-3 cursor-pointer"></i></span>
+
             <label
               htmlFor="password"
               className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-emerald-600 peer-focus:dark:text-emerald-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
               Enter Your password:
             </label>
-            {formik.touched.password && formik.errors.password ? (
-              <div className="p-2 my-4 text-lg rounded-lg bg-red-50 dark:text-red-400" role="alert">
-                <span className="text-red-600 font-medium">{formik.errors.password}</span>
-              </div>
-            ) : null}
           </div>
+          {formik.touched.password && formik.errors.password ? (
+            <div className="p-2 my-4 text-lg rounded-lg bg-red-50 dark:text-red-400" role="alert">
+              <span className="text-red-600 font-medium">{formik.errors.password}</span>
+            </div>
+          ) : null}
 
-          <div className="my-5"><Link className="text-emerald-600 hover:underline " to="/forgetPassword">Forgot Password?</Link></div>
+          <div className="my-2"><Link className="text-emerald-600 hover:underline " to="/forgetPassword">Forgot Password?</Link></div>
+          <div className="my-3">Dont have an account? <Link className="text-emerald-600 hover:underline " to="/">Sign Up</Link></div>
 
           {!loading?<button
             type="submit"

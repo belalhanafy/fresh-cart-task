@@ -22,8 +22,9 @@ import CheckOut from './Components/CheckOut/CheckOut'
 import UserContextProvider from './Context/UserContext'
 import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute'
 import CartContextProvider from './Context/CartContext'
-import { Toaster } from 'react-hot-toast'
 import '@fortawesome/fontawesome-free/css/all.min.css'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   let routers = createBrowserRouter([
@@ -51,7 +52,7 @@ function App() {
     <UserContextProvider>
         <CartContextProvider>
           <RouterProvider router={routers}></RouterProvider>
-          <Toaster />
+          <ToastContainer />
         </CartContextProvider>
     </UserContextProvider>
     </>
