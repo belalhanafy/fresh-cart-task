@@ -51,7 +51,7 @@ export default function Brands() {
                     <p>{brand.slug}</p>
                   </div>
                   <div className='w-full xl:w-1/2'>
-                    <img className="block w-full" src={brand.image} alt={brand.slug} />
+                    <img loading="lazy" className="block w-full" src={brand.image} alt={brand.slug} />
                   </div>
                 </div>
               </div>
@@ -70,8 +70,8 @@ export default function Brands() {
           {brands.length && (
             brands.map((brand) => (
               <button onClick={() => getBrand(brand._id)} key={brand._id}>
-                <div className="border border-slate-300 rounded-xl hover:shadow-xl hover:shadow-green-700 transition-shadow duration-300">
-                  <img src={brand.image} className="h-[200px] block w-full rounded-xl object-contain" alt={brand.name} />
+                <div data-aos="zoom-in" className="border border-slate-300 rounded-xl hover:shadow-xl hover:shadow-green-700 transition-shadow duration-300">
+                  <img loading="lazy" src={brand.image} className="h-[200px] block w-full rounded-xl object-contain" alt={brand.name} />
                   <h2 className="py-5 text-main text-center text-2xl">{brand.name}</h2>
                 </div>
               </button>

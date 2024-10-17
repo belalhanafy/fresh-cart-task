@@ -1,6 +1,3 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Layout from './Components/Layout/Layout'
@@ -25,8 +22,19 @@ import CartContextProvider from './Context/CartContext'
 import '@fortawesome/fontawesome-free/css/all.min.css'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from 'react'
 
 function App() {
+  useEffect(() => {
+    AOS.init({
+      duration: 500,
+      easing: "ease-in-sine",
+      offset: 100,
+    });
+    AOS.refresh();
+  }, []);
   let routers = createBrowserRouter([
     {path:'', element:<Layout/> ,children:[
       {path:'home', element:<ProtectedRoute><Home/></ProtectedRoute> },

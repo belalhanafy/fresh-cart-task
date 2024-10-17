@@ -8,7 +8,7 @@ export default function Notfound() {
   return (
     <>
         <div className='flex justify-center'>
-          <img src={notFound} alt="not found" />
+          <img loading="lazy" src={notFound} alt="not found" />
         </div>
     </>
   )

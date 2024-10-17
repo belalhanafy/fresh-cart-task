@@ -6,6 +6,7 @@ import RelatedProductsSlider from '../RelatedProductsSlider/RelatedProductsSlide
 export default function GetRelatedProducts() {
   let {catId} = useParams();
   const [relatedproducts, setRelatedProducts] = useState([])
+  
   async function GetRelatedProducts(catId) {
     let {data} = await axios.get(`https://ecommerce.routemisr.com/api/v1/products?category=${catId}`)
     setRelatedProducts(data.data)

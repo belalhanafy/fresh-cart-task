@@ -37,21 +37,25 @@ export default function Footer() {
                 <p className="text-center">Payment Partners</p>
                 <div className="flex items-center gap-4">
                   <img
+                    loading="lazy"
                     className="sm:w-[50px] w-[40px] sm:h-[40px] h-[40px]"
                     src={amazon}
                     alt=''
                   />
                   <img
+                    loading="lazy"
                     className="sm:w-[50px] w-[40px] sm:h-[40px] h-[40px]"
                     src={ae}
                     alt=''
                   />
                   <img
+                    loading="lazy"
                     className="sm:w-[50px] w-[40px] sm:h-[40px] h-[40px]"
                     src={masterCard}
                     alt=''
                   />
                   <img
+                    loading="lazy"
                     className="sm:w-[50px] w-[40px] sm:h-[40px] h-[40px]"
                     src={paypal}
                     alt=''
@@ -62,11 +66,13 @@ export default function Footer() {
                 <p className="text-center">Get deliveries with FreshCart</p>
                 <div className="flex items-center gap-2">
                   <img
+                    loading="lazy"
                     className="sm:w-[90px] w-[70px] h-[30px]"
                     src={apple2}
                     alt=''
                   />
                   <img
+                    loading="lazy"
                     className="sm:w-[100px] w-[80px] h-[45px]"
                     src={googlePlay}
                     alt=''

@@ -11,6 +11,7 @@ export default function Login() {
   const [loading , setLoading] = useState(false)
   let {userData,setUserData} = useContext(userContext)
   let navigate = useNavigate()
+
   function handleShowPassword() {
     let passwordInput = document.getElementById("password");
     if (passwordInput.type === "password") {
@@ -39,12 +40,13 @@ export default function Login() {
       setLoading(false)
     }
   }
+
   let validationSchema = Yup.object().shape({
     email: Yup.string()
       .email('Invalid email address format')
       .required('Email is required'),
   
-      password: Yup.string()
+    password: Yup.string()
       .min(8, 'Password is too short - should be at least 8 characters.')
       .matches(
         /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,

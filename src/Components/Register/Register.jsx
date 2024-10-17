@@ -10,7 +10,6 @@ export default function Register() {
   const [apiError, setApiError] = useState(null)
   const [loading , setLoading] = useState(false)
   const {userData} = useContext(userContext)
-  console.log(userData);
   
   let navigate = useNavigate()
 
@@ -20,7 +19,7 @@ export default function Register() {
       passwordInput.type = "text";
     } else {
       passwordInput.type = "password";
-        }
+      }
   }
   function handleShowrePassword() {
     let passwordInput = document.getElementById("rePassword");
@@ -30,6 +29,7 @@ export default function Register() {
       passwordInput.type = "password";
         }
   }
+
   async function register(values) {
     try {
       setLoading(true)
@@ -47,6 +47,7 @@ export default function Register() {
     }
     document.title = "register"
   }, [userData]);
+  
   let validationSchema = Yup.object().shape({
     name: Yup.string()
       .min(2, 'Name is too short - should be at least 2 characters.')

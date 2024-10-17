@@ -58,7 +58,7 @@ export default function CategorySlider() {
         <Slider className='mb-16' {...settings}>
           {categories?.map((cat,index)=><div key={index}>
             <div className='mx-2'>
-              <img src={cat.image} className='w-full block h-[250px] object-contain lg:object-cover rounded-lg shadow-md' alt=''/> 
+              <img loading="lazy" src={cat.image} className='w-full block h-[250px] object-contain lg:object-cover rounded-lg shadow-md' alt=''/> 
               <p className='mt-2 mb-5 lgmb-3 text-center'>{cat.name}</p>
             </div>
           </div> 

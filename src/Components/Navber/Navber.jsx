@@ -24,9 +24,11 @@ export default function Navber() {
           <div className="flex justify-between lg:justify-normal items-center space-x-3">
             <div>
               <NavLink to={"/home"}>
-                <img className="w-[120px]" src={logo} alt="" />
+                <img loading="lazy" className="w-[120px]" src={logo} alt="" />
               </NavLink>
             </div>
+
+            {/* menu */}
             <div className="lg:hidden">
               <button
                 onClick={() => setIsOpen(!isOpen)}
@@ -41,6 +43,7 @@ export default function Navber() {
                 ></i>
               </button>
             </div>
+
             {userData && (
               <ul className="hidden lg:flex flex-row space-x-4">
                 <li>
@@ -100,6 +103,7 @@ export default function Navber() {
             </ul>
           </div>
 
+          {/* responsive nav */}
           <div
             className={`flex lg:hidden px-4 duration-500 overflow-hidden ${
               isOpen ? "dropdown-enter-active" : "dropdown-leave-active"

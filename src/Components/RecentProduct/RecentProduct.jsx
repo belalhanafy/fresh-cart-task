@@ -31,14 +31,14 @@ export default function RecentProduct({pro}) {
   }
   return (
     <>
-        <div className='product relative pb-3 hover:shadow-lg hover:shadow-green-700 transition-shadow duration-300'>
-        <button onClick={() => {
-                handleHeartClick();
-            }}>
-          <i className={`absolute z-30 top-4 right-4 text-xl fa-solid fa-heart ${wishListProducts.includes(pro.id) && 'text-red-600'}`}></i>
-        </button>
+        <div data-aos="fade-up" className='product relative pb-3 hover:shadow-lg hover:shadow-green-700 transition-shadow duration-300'>
+          <button onClick={() => {
+                  handleHeartClick();
+              }}>
+            <i className={`absolute z-30 top-4 right-4 text-xl fa-solid fa-heart ${wishListProducts.includes(pro.id) && 'text-red-600'}`}></i>
+          </button>
           <Link to={`/productDetails/${pro.id}/${pro.category._id}`}>
-            <img className='shadow-md block w-full rounded-2xl' src={pro.imageCover} alt={pro.title} />
+            <img loading="lazy" className='shadow-md block w-full rounded-2xl' src={pro.imageCover} alt={pro.title} />
             <div className='px-3 py-2'>
               
               <h2 className='text-main text-sm'>{pro.category.name}</h2>

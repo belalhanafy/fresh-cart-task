@@ -89,6 +89,7 @@ export default function ProductDetails() {
                       <div>
                         <div className="mx-2">
                           <img
+                          loading="lazy"
                           key={index}
                           src={image}
                           className="w-full block object-cover"
@@ -99,6 +100,7 @@ export default function ProductDetails() {
                      
                     ))}
                   </Slider> : <img
+                        loading="lazy"
                         src={productdetails.imageCover}
                         className="w-full block"
                         alt=""

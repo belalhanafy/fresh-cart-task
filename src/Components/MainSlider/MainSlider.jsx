@@ -22,14 +22,14 @@ export default function MainSlider() {
         <div className="flex flex-col lg:flex-row pt-5 mb-16">
           <div className='w-full lg:w-3/4'>
             <Slider {...settings}>
-              <img className='lg:h-[450px] h-auto mb-3 w-full block' src={slide1} alt="" />
-              <img className='lg:h-[450px] h-auto mb-3 w-full block' src={slide2} alt="" />
-              <img className='lg:h-[450px] h-auto mb-3 w-full block' src={slide3} alt="" />
+              <img loading="lazy" className='lg:h-[450px] h-auto mb-3 w-full block' src={slide1} alt="" />
+              <img loading="lazy" className='lg:h-[450px] h-auto mb-3 w-full block' src={slide2} alt="" />
+              <img loading="lazy" className='lg:h-[450px] h-auto mb-3 w-full block' src={slide3} alt="" />
           </Slider>
           </div>
           <div className='w-full flex flex-col md:flex-row lg:block lg:w-1/4 mt-10 lg:mt-0'>
-            <img src={blog1} className="lg:h-[225px] h-auto w-full block object-cover" alt=""/>
-            <img src={blog2} className="lg:h-[225px] h-auto w-full block object-cover" alt=""/>
+            <img loading="lazy" src={blog1} className="lg:h-[225px] h-auto w-full block object-cover" alt=""/>
+            <img loading="lazy" src={blog2} className="lg:h-[225px] h-auto w-full block object-cover" alt=""/>
           </div>
         </div>
     </>

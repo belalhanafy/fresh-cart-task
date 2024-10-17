@@ -55,6 +55,7 @@ export default function WishList() {
                               {/* Product Details */}
                               <td className="p-4">
                                 <img
+                                  loading="lazy"
                                   src={item.imageCover}
                                   className="w-16 md:w-32 max-w-full max-h-full"
                                   alt={item.title}
@@ -99,6 +100,7 @@ export default function WishList() {
                             {/* Product Details */}
                             <div className="p-4 flex justify-center">
                               <img
+                                loading="lazy"
                                 src={item.imageCover}
                                 className="shadow-lg w-[400px] block h-[400px] object-contain"
                                 alt={item.title}
@@ -156,7 +158,7 @@ export default function WishList() {
                 </p>
                 <Link
                   to={"/home"}
-                  className="flex items-center gap-3 bg-green-500 py-2 px-4 shadow-md sm:rounded-lg text-white"
+                  className="flex items-center gap-3 bg-green-500 py-2 px-4 shadow-md rounded-lg text-white"
                 >
                   <i className="fas fa-reply"></i> RETURN TO SHOP
                 </Link>
@@ -175,7 +177,7 @@ export default function WishList() {
               </p>
               <Link
                 to={"/home"}
-                className="flex items-center gap-3 bg-green-500 py-2 px-4 shadow-md sm:rounded-lg text-white"
+                className="flex items-center gap-3 bg-green-500 py-2 px-4 shadow-md rounded-lg text-white"
               >
                 <i className="fas fa-reply"></i> RETURN TO SHOP
               </Link>
