@@ -2,16 +2,22 @@ import React, { useEffect, useState } from "react";
 import RecentProduct from "../RecentProduct/RecentProduct";
 import axios from "axios";
 import Loading from "../Loading/Loading";
+import { Pagination, Stack } from "@mui/material";
+import { green } from '@mui/material/colors';
 
 export default function Products() {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [pages, setPages] = useState(0);
+  const [currPage, setcurrPage] = useState(0);
+  const color = green[500];
 
   async function getAllProducts() {
     try {
-      let { data } = await axios.get('https://ecommerce.routemisr.com/api/v1/products');
+      let { data } = await axios.get(`https://ecommerce.routemisr.com/api/v1/products?page=${currPage}`);
       setProducts(data.data);
+      setPages(data.metadata.numberOfPages)
       setFilteredProducts(data.data);
     } catch (error) {
       console.log(error);
@@ -21,14 +27,16 @@ export default function Products() {
   useEffect(() => {
     getAllProducts();
     document.title = "products"
-  }, []);
-
+  }, [currPage]);
+  const handleChange = (event, value) => {
+    setcurrPage(value);
+    window.scrollTo(0, 0)
+  };
   useEffect(() => {
     const searchTermLower = searchTerm.trim().toLowerCase();
     const filtered = products.filter((product) => {
       return (
-        product.title.toLowerCase().includes(searchTermLower) || 
-        product.category.name.toLowerCase().includes(searchTermLower)
+        product.title.toLowerCase().includes(searchTermLower)
       );
     });
     setFilteredProducts(filtered);
@@ -80,6 +88,18 @@ export default function Products() {
       ) : (<div className="flex justify-center pt-10">
         <Loading />
       </div>)}
+      <Stack sx={{ display: "flex", justifyContent: "center", alignItems: "center", marginTop: "50px" }} spacing={2}>
+          <Pagination count={pages} showFirstButton showLastButton onChange={handleChange} sx={{
+            '.Mui-selected': {
+              backgroundColor: color,
+            },
+            '.MuiPaginationItem-root': {
+              '&:hover': {
+                backgroundColor: color,
+              },
+            },
+          }} />
+        </Stack>
     </>
   );
 }
