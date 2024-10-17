@@ -59,7 +59,7 @@ export default function Navber() {
                   <NavLink to={"/brands"}>Brands</NavLink>
                 </li>
                 <li>
-                  <NavLink to={"/orders"}>Orders</NavLink>
+                  <NavLink to={"/allorders"}>Orders</NavLink>
                 </li>
               </ul>
             )}
@@ -162,7 +162,7 @@ export default function Navber() {
                         handleLinkClick();
                       }}
                       className="p-2 text-black text-lg md:text-xl font-bold"
-                      to="/orders"
+                      to="/allorders"
                     >
                       Orders
                     </NavLink>
